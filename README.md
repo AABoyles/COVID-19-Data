@@ -2,6 +2,10 @@
 
 Some critical organizations are not doing a great job of publishing their COVID-19 data in machine-readable formats. Not that I blame them! They certainly have more pressing things to do at the moment, but they've left would-be analysts of that data scrambling to find alternatives. So I decided to take a break from forecasting and do the legwork to liberate the data.
 
+## WHO
+
+Every day since 2020-01-20, the WHO has published [a situation report], usually containing some aggregate tables with counts of the number of known infections and deaths. These are PDF documents exported from MS Word. The tables don't copy-and-paste from the PDF cleanly, but the PDF [can be decompiled](https://pdf2docx.com/) to a very close approximation of the source Word document. From there, the tables can be copied-and-pasted to a spreadsheet, but still require extensive manual cleaning. I'm working through the backlog, but it will be a few days at least before I have the complete data. Meanwhile, [the aggregate global case and death counts are available]().
+
 ## JHU CSSE
 
 The JHU CSSE's [COVID-19 Dashboard](http://plague.com) has become one of the most widely-distributed sources of daily COVID-19 statistics. [Since 2020-02-04](https://github.com/CSSEGISandData/COVID-19/commit/05ae46515c8521ef82c5d622bcd6ffde20cffe33), they've been [storing their data on Github](https://github.com/CSSEGISandData/COVID-19). Accordingly, we include it in this repo as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules). After cloning this repository, you can access the CSSE data by initializing and updating the submodule, like so:
