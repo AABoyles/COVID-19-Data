@@ -1,0 +1,25 @@
+{
+  "name": "covid-19-data",
+  "version": "1.0.0",
+  "description": "Some critical organizations are not doing a great job of publishing their COVID-19 data in machine-readable formats. Not that I blame them! They certainly have more pressing things to do at the moment, but they've left would-be analysts of that data scrambling to find alternatives. So I decided to take a break from forecasting and do the legwork to liberate the data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrape-citizen-times": "node scripts/scrape-citizen-times.js",
+    "scrape-jhu": "git submodule update --remote"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AABoyles/COVID-19-Data.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AABoyles/COVID-19-Data/issues"
+  },
+  "homepage": "https://github.com/AABoyles/COVID-19-Data#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "papaparse": "^5.1.1"
+  }
+}

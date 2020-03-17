@@ -17,6 +17,48 @@ And, to bring it up to date:
 npm run scrape-jhu
 ```
 
+## Citizen Times
+
+Data.Citizen-Times has recently been floated as a viable alternative to JHU CSSE for [its dashboard](https://data.citizen-times.com/coronavirus/). They don't provide tools for viewing changes over time except in the context of the map, for which their data is encoded in [a huge GeoJSON file](https://data.citizen-times.com/media/jsons/smpj/covid19_r2.json). It can be scraped by running this node script, like so:
+
+```bash
+npm run scrape-citizen-times
+```
+
+Or, if Node isn't your style, [surf over to the Dashboard](https://data.citizen-times.com/coronavirus/) and run this in [your developer console](https://javascript.info/devtools):
+
+```javascript
+(() => {
+  function loadScript(url){
+    let script   = document.createElement("script");
+    script.type  = "text/javascript";
+    script.src   = url;
+    document.body.appendChild(script);
+  }
+
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js");
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js");
+
+  fetch('https://data.citizen-times.com/media/jsons/smpj/covid19_r2.json').then(response => {
+    response.json().then(data => {
+      saveAs(new Blob([JSON.stringify(data)], {type: "application/json;charset=utf-8"}), "raw.json");
+      saveAs(new Blob([Papa.unparse(
+        data.features.map(f => ({
+          "Country": f.properties.n,
+          "Confirmed": f.properties.c,
+          "Deaths": f.properties.d,
+          "Recovered": f.properties.r,
+          "Active": f.properties.e,
+          "Timestep": f.properties.t, 
+          "Date": f.properties.a
+        }))
+      )], {type: "text/csv;charset=utf-8"}), "data.csv");
+    })
+  });
+})();
+
+//The files are downloaded as `raw.json` and `data.csv`.
+```
 
 ## Others
 
