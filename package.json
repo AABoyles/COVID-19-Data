@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scrape-citizen-times": "node scripts/scrape-citizen-times.js",
-    "scrape-jhu": "git submodule update --remote"
+    "scrape-jhu": "git submodule update --remote",
+    "scrape-who": "(cd WHO && wget -i sitreps.urls --directory-prefix=pdf)"
   },
   "repository": {
     "type": "git",
